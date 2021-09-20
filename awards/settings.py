@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'award'
+    'award',
+    'bootstrap4',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -78,9 +83,9 @@ WSGI_APPLICATION = 'awards.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        "PASSWORD":os.environ.get('DB_PASSWORD')
+        'NAME': 'awards',
+        'USER': 'moringa',
+        "PASSWORD":'binamin'
     }
 }
 
@@ -127,3 +132,10 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CLOUDINARY
+cloudinary.config(
+    cloud_name = 'kingbin',
+    api_key = "797142459758983", 
+    api_secret = "cdIGxFq88jZuy8QjY-N9Pq22PSI" 
+)

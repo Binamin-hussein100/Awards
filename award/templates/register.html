@@ -7,6 +7,13 @@
          <div class="col-md-4">
             <div class="card-body">
                 <h1>register</h1>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
                 <form action="{% url 'register' %}" method="post">
                     {%csrf_token%}
                     

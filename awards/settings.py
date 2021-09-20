@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'awards',
         'USER': 'moringa',
-        "PASSWORD":'binamin'
+        'PASSWORD':'binamin',
     }
 }
 

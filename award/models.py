@@ -8,9 +8,6 @@ class Profile(models.Model):
     bio = models.CharField(max_length=100)
     profile_pic = CloudinaryField('image')
     
-    def __str__(self):
-        return f'{self.user.username}'
-    
     def save(self):
         super().save()
         
@@ -28,3 +25,6 @@ class Profile(models.Model):
             prof = Profile.objects.create(user=kwargs['instance'])
 
     post_save.connect(user_profile, sender=User)
+    
+    def __str__(self):
+        return f'{self.user.username}'

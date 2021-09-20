@@ -20,6 +20,15 @@ def register(request):
                    messages.warning(request, 'Email already exists. Try another')
                    return redirect('register')
                else:
-                    user = User.objects.create_user(username=username,email=email,password=password)
+                    user = User.objects.create_user(username=username,password=password)
                     user.save()
+                    messages.INFO(request, 'Save was successful.')
                     return redirect('login')
+        else:
+            messages.warning(request, 'Password must match.')
+            return redirect('register')
+    else:
+        return render(request,'register.html')
+                
+def login(request):
+    pass

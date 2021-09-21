@@ -8,8 +8,8 @@ class Profile(models.Model):
     bio = models.CharField(max_length=100)
     profile_pic = CloudinaryField('image')
     
-    def save(self):
-        super().save()
+    def save(self,**kwargs):
+        self.save()
         
     def save_profile(self):
         self.save()
@@ -19,12 +19,33 @@ class Profile(models.Model):
     
     def profiles_posts(self):
         self.image_set.all()
-        
-    def user_profile(sender,**kwargs):
-        if kwargs['created']:
-            prof = Profile.objects.create(user=kwargs['instance'])
-
-    post_save.connect(user_profile, sender=User)
-    
+       
     def __str__(self):
         return f'{self.user.username}'
+        
+# def user_profile(sender,**kwargs):
+#     if kwargs['created']:
+#         prof = Profile.objects.create(user=kwargs['instance'])
+# post_save.connect(user_profile, sender=User)
+    
+    
+    
+class Project(models.Model):
+    user =  models.OneToOneField(User,null=True,on_delete=models.CASCADE,default=None,blank=True)
+    title = models.CharField(max_length=30)
+    landing_page = CloudinaryField('image')
+    description = models.TextField() 
+    link = models.URLField()
+    author= models.ForeignKey(Profile, on_delete=models.CASCADE,default=None, null=True, blank=True)
+    
+    def __str__(self):
+        return self.title
+
+    def total_likes(self):
+        return self.likes.count()
+    
+    def save_image(self):
+        self.save()
+    
+    def delete_image(self):
+        self.delete()

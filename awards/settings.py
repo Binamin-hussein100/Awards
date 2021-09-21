@@ -139,3 +139,5 @@ cloudinary.config(
     api_key = "797142459758983", 
     api_secret = "cdIGxFq88jZuy8QjY-N9Pq22PSI" 
 )
+
+LOGIN_REDIRECT_URL = 'home'

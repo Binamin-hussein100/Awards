@@ -1,16 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div id="post" class="col-md-3" style="margin-top: 2%;">
-    <form id="the_form" action="{% url 'post' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="row justify-content-center">
-       <!-- form -->
-       {{myForm}}
-        <hr class="mb-3">
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+<div id="pst_form" class="container-fluid">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div id="post" class="col-md-2">
+            <form id="the_form" action="{% url 'post' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row justify-content-center">
+                <!-- form -->
+                {{myForm}}
+                <hr class="mb-3">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+                </div>
+            </form>
         </div>
-    </form>
+        <div id="disc" class="col-md-5">
+            <div id="intro" class="text-center">
+                <h1 id="title">WHY YOU SHOULD POST HERE..</h1>
+                <h4 id="parra">What is important is not how you see your work but how others see it. <br>
+                    Take criticism seriously, but not personally. If there is truth or merit in the criticism, try to learn from it. Otherwise, let it roll right off you. 
+                </h4>
+            </div>
+            <div class="text-center">
+                <h1><i id="point" class="fas fa-hand-point-left"></i></h1>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
 </div>
 
 {% endblock %}

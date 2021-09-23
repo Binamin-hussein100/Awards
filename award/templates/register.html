@@ -1,44 +1,54 @@
 {% extends 'base.html' %}
 
 {% block content %}
- <div class="container">
+ <div id="reg-lg" class="container-fluid">
      <div class="row">
-         <div class="col-md-4"></div>
-         <div class="col-md-4">
-            <div class="card-body">
-                <h1>register</h1>
-                {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-                <form action="{% url 'register' %}" method="post">
-                    {%csrf_token%}
-                    
-                    <div class="form">
-                        <label for="username">Username:</label>
-                        <input type="text" name="username" class="form-control" required>
+       <div id="reg-fm" class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h1>register</h1>
+                        {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <form action="{% url 'register' %}" method="post">
+                            {%csrf_token%}
+                            
+                            <div class="form">
+                                <label for="username">USERNAME:</label>
+                                <input type="text" name="username" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">EMAIL:</label>
+                                <input type="text" class="form-control" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">PASSWORD:</label>
+                                <input type="password" class="form-control" name="password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password2">CONFIRM PASSWORD:</label>
+                                <input type="password" class="form-control" name="password2" required>
+                            </div>
+                            <input type="submit" value="Sign up" class="btn btn-outline-light btn-block mt-2">
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="text" class="form-control" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" class="form-control" name="password" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password2">Confirm password:</label>
-                        <input type="password" class="form-control" name="password2" required>
-                    </div>
-                    <input type="submit" value="Sign up" class="btn btn-primary btn-block mt-2">
-                </form>
+                 </div>
+                 <div class="col-md-6">
+                  <h1 id="reg_title" class="text-center" >WELCOME TO THE AWARDS</h1>
+                  <div>
+                    <img id="awardl" src="../static/images/How to Make a Large Welcome Sign with a Farmhouse Shiplap Look - Dream Design DIY.jpeg" alt="image">
+                </div>
+                 </div>
+                
             </div>
-         </div>
-         <div class="col-md-4"></div>
+       </div>
      </div>
  </div>
 
 {% endblock %}
+

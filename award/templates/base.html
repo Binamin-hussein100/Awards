@@ -1,4 +1,5 @@
 {% load bootstrap4 %}
+{% load static%}
 <!doctype html>
 <html lang="en">
   <head>
@@ -6,16 +7,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+     <!-- css -->
+     <link rel="stylesheet" href="{% static 'award.css'%}">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>AWARDS</title>
   </head>
   <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand mr-4" href="/">Awards</a>
+        <a id="logo" class="navbar-brand mr-4" href="{% url 'home' %}"><h3> <span><i class="fas fa-award"></i> </span> AWARDS</h3></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -36,7 +41,7 @@
                       aria-label="Search">
               </div>
           </form>
-            <a class="nav-item nav-link" href="/">New Post</a>
+            <a class="nav-item nav-link" href="{% url 'post' %}">New Post</a>
             <a class="nav-item nav-link" href="/">Profile</a>
             <a class="nav-item nav-link" href="/">Logout</a>
             {% else %}

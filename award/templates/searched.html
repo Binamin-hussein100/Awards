@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<p>welcome to search</p>
+<div id="searched" class="container-fluid">
+<h4>Searched results.</h4>
+  {% for s in searched %}
+  <div class="card" style="width: 18rem;">
+    <img src="{{s.landing_page.url}}" class="card-img-top" alt="...">
+    <div id="query_bdy" class="card-body">
+      <h5 class="card-title">{{s.title}}</h5>
+      <p class="card-text">{{s.description}}</p>
+      <a href="{{s.link}}" class="btn btn-outline-light">View project <span>...<i class="fas fa-eye"></i></span></a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
 {%endblock%}

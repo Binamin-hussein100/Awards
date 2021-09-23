@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 
 class Profile(models.Model):
     user = models.OneToOneField(User,null=True,on_delete=models.CASCADE)
-    bio = models.CharField(max_length=100)
+    bio = models.TextField(default='Live in the sunshine where you belong.')
     profile_pic = CloudinaryField('image')
     
     def save(self,**kwargs):
@@ -22,6 +22,7 @@ class Profile(models.Model):
        
     def __str__(self):
         return f'{self.user.username}'
+    
 # def create_profile(sender,**kwargs):
 #     if kwargs['created']:
 #         user_profile = Profile.objects.create(user=kwargs['instance'])

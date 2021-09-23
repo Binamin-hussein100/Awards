@@ -4,7 +4,7 @@ from cloudinary.models import CloudinaryField
 from django.db.models.signals import post_save
 
 class Profile(models.Model):
-    user = models.OneToOneField(User,null=True,on_delete=models.CASCADE,default=None,blank=True)
+    user = models.OneToOneField(User,null=True,on_delete=models.CASCADE)
     bio = models.CharField(max_length=100)
     profile_pic = CloudinaryField('image')
     
@@ -22,14 +22,11 @@ class Profile(models.Model):
        
     def __str__(self):
         return f'{self.user.username}'
-        
-# def user_profile(sender,**kwargs):
+# def create_profile(sender,**kwargs):
 #     if kwargs['created']:
-#         prof = Profile.objects.create(user=kwargs['instance'])
-# post_save.connect(user_profile, sender=User)
-    
-    
-    
+#         user_profile = Profile.objects.create(user=kwargs['instance'])
+# post_save.connect(create_profile, sender=User)
+
 class Project(models.Model):
     user =  models.OneToOneField(User,null=True,on_delete=models.CASCADE,default=None,blank=True)
     title = models.CharField(max_length=30)

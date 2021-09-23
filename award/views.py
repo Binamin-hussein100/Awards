@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib import auth
-from .forms import PostForm
+from .forms import PostForm, ProfileForm
 from django.http import HttpResponseRedirect
 from .models import Project
 
@@ -73,3 +73,14 @@ def search(request):
             searched = Project.objects.filter(title__icontains=query)
             return render(request,'searched.html',{'searched':searched})
               
+              
+def get_profile(request):
+        if request.method=='POST':
+           prof =   ProfileForm(request.POST,request.FILES)
+           if prof.is_valid():
+               prof.save()
+               return HttpResponseRedirect('/')
+        else:
+            prof = ProfileForm()
+        
+        return render(request,'profile.html',{'prof':prof})             

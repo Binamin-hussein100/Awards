@@ -42,7 +42,7 @@
               </div>
           </form>
             <a class="nav-item nav-link" href="{% url 'post' %}">New Post</a>
-            <a class="nav-item nav-link" href="/">Profile</a>
+            <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
             <a class="nav-item nav-link" href="/">Logout</a>
             {% else %}
             <a class="nav-item nav-link" href="">Login</a>

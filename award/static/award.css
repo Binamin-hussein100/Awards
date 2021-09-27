@@ -4,7 +4,7 @@
 
 
 #hmpg{
-    height: 93vh;
+    height: auto;
     background-image: radial-gradient(rgba(124, 115, 115, 0.9), rgba(3, 3, 2, 0.336));
    
 }
@@ -137,7 +137,38 @@
     background-color: rgb(43, 44, 54);
     margin-top: 3%;
     color: white;
-    height: 70vh;
-   
+    height: 70vh;  
+ } 
+
+#propic{
+    border: groove whitesmoke 10px;
+    height: 60%;
+    width: 50%;
+}
+
+#pic{
+    height: 59vh;
+    display: flex;
+    padding: 2%;
+}
+#detail{
+    padding: 2%;
+    margin: 3% 3%;
+}
+
+#profileform{
+    color: black;
     
+}
+
+#preview{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#sear{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }

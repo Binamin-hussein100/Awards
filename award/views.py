@@ -1,10 +1,16 @@
+from awards.settings import ALLOWED_HOSTS
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib import auth
 from .forms import PostForm, ProfileForm
 from django.http import HttpResponseRedirect
-from .models import Project
+from .models import Project,Profile
+from rest_framework.views import APIView
+from .serializers import ProjectSerializers
+from rest_framework.response import Response
+from rest_framework import status
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -50,7 +56,8 @@ def login(request):
             return redirect('login')
     else:
         return render(request,'login.html')
-        
+
+@login_required
 def index(request):
     projects = Project.objects.all()
     return render(request,'post.html',{"projects":projects})
@@ -60,12 +67,12 @@ def prj_form(request):
         myForm = PostForm(request.POST,request.FILES)
         if myForm.is_valid():
             myForm.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('home')
         
     else:
         myForm = PostForm()
     return render(request,'homeprj.html',{"myForm":myForm})
-
+@login_required
 def search(request):
     if request.method=='GET':
         query = request.GET.get('q')
@@ -73,14 +80,29 @@ def search(request):
             searched = Project.objects.filter(title__icontains=query)
             return render(request,'searched.html',{'searched':searched})
               
-              
+@login_required             
 def get_profile(request):
+        prfl = Profile.objects.get(user = request.user)
         if request.method=='POST':
            prof =   ProfileForm(request.POST,request.FILES)
            if prof.is_valid():
                prof.save()
-               return HttpResponseRedirect('/')
+               return redirect('profile')
         else:
             prof = ProfileForm()
         
-        return render(request,'profile.html',{'prof':prof})             
+        return render(request,'profile.html',{'prof':prof,'prfl':prfl})             
+
+
+class ProjectList(APIView):
+    def get(self,request):
+        all_proj = Project.objects.all()
+        serializers = ProjectSerializers(all_proj,many=True)
+        return Response(serializers.data)
+    
+    def post(self,request,format=None):
+        serializers = ProjectSerializers(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)

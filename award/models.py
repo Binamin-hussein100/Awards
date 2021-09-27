@@ -7,10 +7,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User,null=True,on_delete=models.CASCADE)
     bio = models.TextField(default='Live in the sunshine where you belong.')
     profile_pic = CloudinaryField('image')
-    
-    def save(self,**kwargs):
-        self.save()
-        
+  
     def save_profile(self):
         self.save()
         
@@ -23,10 +20,10 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username}'
     
-# def create_profile(sender,**kwargs):
-#     if kwargs['created']:
-#         user_profile = Profile.objects.create(user=kwargs['instance'])
-# post_save.connect(create_profile, sender=User)
+def create_profile(sender,**kwargs):
+    if kwargs['created']:
+        user_profile = Profile.objects.create(user=kwargs['instance'])
+post_save.connect(create_profile, sender=User)
 
 class Project(models.Model):
     user =  models.OneToOneField(User,null=True,on_delete=models.CASCADE,default=None,blank=True)

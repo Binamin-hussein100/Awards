@@ -85,16 +85,30 @@ WSGI_APPLICATION = 'awards.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-DATABASES={}
-if PRODUCTION=='True':
+# DATABASES={}
+# if PRODUCTION=='True':
+#     DATABASES['default'] = dj_url.config()
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': 'awards',
+#             'USER': 'moringa',
+#             'PASSWORD':'binamin',
+#         }
+#     }
+
+DATABASES ={}
+PRODUCTION=False
+if PRODUCTION == 'True':
     DATABASES['default'] = dj_url.config()
 else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'awards',
-            'USER': 'moringa',
-            'PASSWORD':'binamin',
+            'NAME':'awards',
+            'USER':'moringa',
+            'PASSWORD': 'binamin',
         }
     }
 

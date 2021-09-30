@@ -100,7 +100,7 @@ WSGI_APPLICATION = 'awards.wsgi.application'
 DATABASES ={}
 PRODUCTION= os.environ.get('PRODUCTION')
 if PRODUCTION =='True':
-    DATABASES['default']=dj_url.config('postgres://issspazweciotj:68c1a628a01712b4b248841107ea644c6b35beca62b3cd58d5be718d100307e3@ec2-34-233-105-94.compute-1.amazonaws.com:5432/d8v8ebugkkjbjp')
+    DATABASES['default']=dj_url.config()
 else:
     DATABASES = {
         'default': {

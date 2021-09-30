@@ -79,6 +79,7 @@ def search(request):
         if query:
             searched = Project.objects.filter(title__icontains=query)
             return render(request,'searched.html',{'searched':searched})
+        
               
 @login_required             
 def get_profile(request):

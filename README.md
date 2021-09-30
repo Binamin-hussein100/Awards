@@ -3,7 +3,7 @@
 A web application where anyone can view any of my projects or post their own.
 
 ## Author
-### [Abdimulhin Adan](https://github.com/Binamin-hussein100)
+### [binamin hussein](https://github.com/Binamin-hussein100)
 
 ## Getting Started
 

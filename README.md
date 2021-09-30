@@ -1,4 +1,4 @@
-# Home-Watch
+# Awards
 
 A web application where anyone can view any of my projects or post their own.
 

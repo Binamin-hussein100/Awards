@@ -30,7 +30,6 @@ SECRET_KEY = 'django-insecure-g^#(-!d60$yi=+kd+8d1z(+a!yekv2c$o@nbkbuewk&_dvl_u=
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-PRODUCTION=False
 
 ALLOWED_HOSTS = ['*']
 
@@ -99,13 +98,13 @@ WSGI_APPLICATION = 'awards.wsgi.application'
 #     }
 
 DATABASES ={}
-PRODUCTION=False
-if PRODUCTION == 'True':
-    DATABASES['default'] = dj_url.config()
+PRODUCTION= os.environ.get('PRODUCTION')
+if PRODUCTION =='True':
+    DATABASES['default']=dj_url.config('postgres://issspazweciotj:68c1a628a01712b4b248841107ea644c6b35beca62b3cd58d5be718d100307e3@ec2-34-233-105-94.compute-1.amazonaws.com:5432/d8v8ebugkkjbjp')
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE':'django.db.backends.postgresql',
             'NAME':'awards',
             'USER':'moringa',
             'PASSWORD': 'binamin',

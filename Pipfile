@@ -12,6 +12,7 @@ pyjwt = "*"
 djangorestframework = "*"
 dj-database-url = "*"
 whitenoise = "*"
+gunicorn = "*"
 
 [dev-packages]
 
